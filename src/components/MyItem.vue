@@ -2,7 +2,15 @@
  * @Author: h2qisme 874175299@qq.com
  * @Date: 2023-08-07 10:51:28
  * @LastEditors: h2qisme 874175299@qq.com
- * @LastEditTime: 2023-08-09 16:05:35
+ * @LastEditTime: 2023-08-09 16:54:27
+ * @FilePath: \vue_test\src\components\MyItem.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!--
+ * @Author: h2qisme 874175299@qq.com
+ * @Date: 2023-08-07 10:51:28
+ * @LastEditors: h2qisme 874175299@qq.com
+ * @LastEditTime: 2023-08-09 16:50:09
  * @FilePath: \vue_test\src\components\MyItem.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,7 +20,7 @@
 			<input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
 			<span>{{todo.title}}</span>
 		</label>
-		<button class="btn btn-danger" style="display:none">删除</button>
+		<button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
 	</li>
 </template>
 
@@ -20,11 +28,18 @@
 	export default {
 		name:'MyItem',
 		//声明 接受todo对象
-		props:['todo','checkTodo'],
+		props:['todo','checkTodo','deleteTodo'],
 		methods:{
+			//勾选
 			handleCheck(id){
 				// 将对应的todo的done值取反	
 				this.checkTodo(id)
+			},
+			//删除
+			handleDelete(id){
+				if(confirm('确定删除嘛？？？？')){
+					this.deleteTodo(id)
+				}
 			}					
 		}
 	}
@@ -64,5 +79,13 @@
 
 	li:last-child {
 	border-bottom: none;
+	}
+
+	li:hover {
+		background-color: aquamarine;
+	}
+
+	li:hover button{
+		display:block
 	}
 </style>
